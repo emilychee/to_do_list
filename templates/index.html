@@ -2,6 +2,7 @@
 <html ng-app="toDo">
 	<head>
 		<title>To Do</title>
+		<!-- AngularJS plugin, JS, Bootstrap, Google Fonts -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,13 +17,14 @@
 		<form novalidate class="simple-form">
 			<div class="form-group">
 				<div class="row justify-content-md-center">
-					<input class="col-10" type="text" ng-model="taskname" placeholder="add new things to do...">
+					<input id="input" class="col-10" type="text" ng-model="taskname" placeholder="add new things to do...">
 					<button type="button" class="btn btn-outline-secondary" ng-click="addItem(taskname)">add me</button>
 				</div>
 			</div>
 		</form>
 
-		<ul id="list"></ul>
+		<br />
+		<ul class="list-group text-dark" id="list"></ul>
 		
 	
 	<!-- JQuery, JS, Popper.js -->
