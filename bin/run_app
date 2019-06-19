@@ -1,0 +1,8 @@
+#!/bin/bash
+# run_app
+# automates running the flask app and setting environment variables
+
+export FLASK_DEBUG=True
+export FLASK_APP=app.py
+
+flask run
