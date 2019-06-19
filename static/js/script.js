@@ -15,7 +15,7 @@
 				var list = document.getElementById("list");
 				angular.element(list).append($scope.li);
 				// reset input field
-				document.getElementById("input").value = '';
+				$scope.taskname = '';
 			};
 
 			$scope.crossOut = function() {
