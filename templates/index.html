@@ -5,6 +5,7 @@
 		<!-- AngularJS plugin, JS, Bootstrap, Google Fonts -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -25,7 +26,12 @@
 
 		<br />
 		<div class="col-12">
-			<ul class="list-group text-dark" id="list"></ul>
+			<ul class="list-group text-dark">
+				<li ng-click="crossOut()" class="list-group-item list-group-item-action" ng-repeat="item in doList">
+					<input type="checkbox" ng-model="item.done"/>
+					<span ng-bind="item.name" class="done-{{'{{item.done}}'}}"></span>
+				</li>
+			</ul>
 		</div>
 	
 	<!-- JQuery, JS, Popper.js -->

@@ -3,29 +3,16 @@
 
 	angular.module('toDo', []).controller('MainCtrl', ['$scope',
 		function($scope) {
-			$scope.dict = {};
+			$scope.doList = [];
 
 			$scope.addItem = function(taskname) {
-				// make list element
-				$scope.li = angular.element('<li/>');
-				$scope.li.attr("class", "list-group-item list-group-item-action");
-				$scope.li.attr("ng-click", "crossOut()")
-				// append to DOM
-				$scope.li.append(document.createTextNode(taskname));
-				var list = document.getElementById("list");
-				angular.element(list).append($scope.li);
-				// reset input field
+				$scope.doList.push({name: $scope.taskname, done: false});
 				$scope.taskname = '';
 			};
 
 			$scope.crossOut = function() {
-				var text = document.querySelector("li").value;
-				document.querySelector("li").value = text.strike();
+				// TODO
 			};
-			/*@HostListener('click', ['$event.target'])
-			onClick(target) {
-				console.log("hello");
-			}*/
 		}
 	]);
 }());
