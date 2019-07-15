@@ -1,17 +1,20 @@
 #!/bin/bash
 
-# makes git pull requests for the repos & lists which branch each repo is on
+# a script to simplify working with 7 repositories at once
+# provides basic git options without having to go into each repo
 
 # Stop on errors
 set -Eeuo pipefail
 
 # command line options
 usage() {
-	echo "Usage: $0 (add|branch|pull|status)"
+	echo "Usage: $0 (add|branch|pull|push|status)" | lolcat
+	echo "For push and commit, provide repository name as second argument" | lolcat
+	echo "For commit, provide message as third argument" | lolcat
 }
 
-# incorrect # of arguments
-if [ $# -gt 2 ]; then
+# incorrect number of arguments
+if [ $# -gt 3 -o $# -lt 1 ]; then
 	usage
 	exit 1
 fi
@@ -67,6 +70,23 @@ case $1 in
 		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 		;;
 
+	"commit")
+		# argument checks
+		if [ $# -eq 1 ]; then
+			echo "Please input a repository name" | cowsay -f dragon
+			exit 1
+		fi
+		if [ $# -eq 2 ]; then
+			echo "Please input a commit message" | cowsay -f elephant
+			exit 1
+		fi
+
+		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+		echo $2 | lolcat
+		git -C $2 commit -m "$3"
+		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+		;;
+
 	"pull")
 		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 		echo "ap-auth" | lolcat
@@ -93,15 +113,15 @@ case $1 in
 		;;
 
 	"push")
+		# argument check
+		if [ $# -eq 1 ]; then
+			echo "Please input a repository name" | cowsay -f turtle
+			exit 1
+		fi
+
 		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-		echo "ap-auth" | lolcat
-		git -C ap-auth push origin $2 | lolcat
-		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-		echo "ap-commons" | lolcat
-		git -C ap-commons push origin $2 | lolcat
-		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-		echo "potential-items" | lolcat
-		git -C potential-items push origin $2 | lolcat
+		echo $2 | lolcat
+		git -C $2 push origin EA-9628  # must change branch manually for each new story
 		echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 		;;
 
